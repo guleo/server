@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - quizup@localhost" uuid="0afa652e-7126-413e-9389-561bd2b43ed1">
+    <database-info product="MySQL" version="5.7.4-m14" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="quizup"/>
+    <table name="qui_question" schema="" catalog="quizup" type="TABLE">
+      <column name="que_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_class" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sub_class" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="qui_text" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="qui_right" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="qui_wrong1" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="qui_wrong2" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="qui_wrong3" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="que_id"/>
+      <foreign-key name="first_class_id" columns="first_class" ref-table="qui_question_first_class" ref-schema="" ref-catalog="quizup" ref-columns="first_class_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="sub_class_id" columns="sub_class" ref-table="qui_question_sub_class" ref-schema="" ref-catalog="quizup" ref-columns="sub_class_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="que_id_UNIQUE" unique="true" columns="que_id"/>
+      <index name="first_class_id_idx" unique="false" columns="first_class"/>
+      <index name="sub_class_id_idx" unique="false" columns="sub_class"/>
+    </table>
+    <table name="qui_question_first_class" schema="" catalog="quizup" type="TABLE">
+      <column name="first_class_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_class_name" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="first_class_id"/>
+      <exported-key name="first_class_id" table="qui_question" schema="" catalog="quizup" columns="first_class"/>
+      <index name="first_class_id_UNIQUE" unique="true" columns="first_class_id"/>
+      <index name="first_class_name_UNIQUE" unique="true" columns="first_class_name"/>
+    </table>
+    <table name="qui_question_sub_class" schema="" catalog="quizup" type="TABLE">
+      <column name="sub_class_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="sub_class_name" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sub_class_id"/>
+      <exported-key name="sub_class_id" table="qui_question" schema="" catalog="quizup" columns="sub_class"/>
+      <index name="sub_class_id_UNIQUE" unique="true" columns="sub_class_id"/>
+      <index name="sub_class_name_UNIQUE" unique="true" columns="sub_class_name"/>
+    </table>
+    <table name="qui_user_base" schema="" catalog="quizup" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_name" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_pwd" sqlType="CHAR" precision="32" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <exported-key name="friend_id" table="qui_user_friend" schema="" catalog="quizup" columns="friend_id"/>
+      <exported-key name="user_id_friend" table="qui_user_friend" schema="" catalog="quizup" columns="user_id"/>
+      <exported-key name="user_id" table="qui_user_info" schema="" catalog="quizup" columns="user_id"/>
+      <exported-key name="user_id_score" table="qui_user_score" schema="" catalog="quizup" columns="user_id"/>
+      <index name="user_id_UNIQUE" unique="true" columns="user_id"/>
+      <index name="user_name_UNIQUE" unique="true" columns="user_name"/>
+    </table>
+    <table name="qui_user_friend" schema="" catalog="quizup" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="friend_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="friend_id" columns="friend_id" ref-table="qui_user_base" ref-schema="" ref-catalog="quizup" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="user_id_friend" columns="user_id" ref-table="qui_user_base" ref-schema="" ref-catalog="quizup" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="friend_id_UNIQUE" unique="true" columns="friend_id"/>
+      <index name="user_id_UNIQUE" unique="true" columns="user_id"/>
+    </table>
+    <table name="qui_user_info" schema="" catalog="quizup" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_head" sqlType="LONGBLOB" precision="2147483647" scale="0" nullable="true" jdbcType="-4"/>
+      <column name="user_sex" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="user_school" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12" def="J251bGwn"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="user_id" columns="user_id" ref-table="qui_user_base" ref-schema="" ref-catalog="quizup" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_id_UNIQUE" unique="true" columns="user_id"/>
+    </table>
+    <table name="qui_user_score" schema="" catalog="quizup" type="TABLE">
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="user_win" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="user_lose" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="user_draw" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="user_time" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="user_score" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="user_id_score" columns="user_id" ref-table="qui_user_base" ref-schema="" ref-catalog="quizup" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="user_id_UNIQUE" unique="true" columns="user_id"/>
+    </table>
+  </data-source>
+</component>
