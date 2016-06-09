@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - quizup@localhost" uuid="0afa652e-7126-413e-9389-561bd2b43ed1">
+    <data-source name="MYSQL-quizup" uuid="37f79193-96fc-407a-927c-2c89d19738ab">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>quizup.*</schema-pattern>
-      <default-schemas>quizup.*</default-schemas>
     </data-source>
   </component>
 </project>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="org.apache.commons.pool_1.6.0.v201204271246">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/org.apache.commons.pool_1.6.0.v201204271246.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
